@@ -32,4 +32,4 @@ ex) [검색한 해쉬태그]_[날짜]_tag_name.xlsx
 2. 저장된 url에서 해쉬태그만 추출하기  
 `python main.py --id=[user_id] --password=[user-password --file_name=[file_name]`
 
-좀 더 자세한 실행 옵션 확인을 원하시면 `python main.py -h` 확인해주세요.# -Instagram_Crawler
+좀 더 자세한 실행 옵션 확인을 원하시면 `python main.py -h` 확인해주세요.
