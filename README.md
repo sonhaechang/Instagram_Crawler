@@ -21,7 +21,7 @@ ex) [검색한 해쉬태그]_[날짜]_tag_name.xlsx
 `pip install -r requirements.txt` 로 패키지를 설치
 (Python 3.9.12 사용)
 
-본인이 사용하는 크롬 버전을 확인 후 동일한 버전의 크롬 드라이버를 설치 해서 driver 폴더에 추가해주세요.
+본인이 사용하는 크롬 버전을 확인 후 동일한 버전의 크롬 드라이버를 설치 해서 driver 폴더에 추가해주세요.  
 [크롬 드라이버 다운로드](https://chromedriver.chromium.org/downloads)
 
 그리고 2가지 방법중 하나를 선택해서 Instagram Crawler 실행합니다.
