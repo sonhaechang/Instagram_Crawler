@@ -30,6 +30,6 @@ ex) [검색한 해쉬태그]_[날짜]_tag_name.xlsx
 `python main.py --id=[user_id] --password=[user-password --hash_tag=[hash_tag]`
 
 2. 저장된 url에서 해쉬태그만 추출하기  
-`python main.py --id=[user_id] --password=[user-password --file_name=[file_name]`
+`python main.py --id=[user_id] --password=[user-password --crawling_option=2 --file_name=[file_name]`
 
 좀 더 자세한 실행 옵션 확인을 원하시면 `python main.py -h` 확인해주세요.
