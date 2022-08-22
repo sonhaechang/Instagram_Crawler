@@ -4,6 +4,7 @@ from instagram_crawling.utils import (
 	get_post_a_tag,
 	scroll_up, scroll_down, get_scroll_position,
 )
+from instagram_crawling.meta_data import SCROLL_NUM
 
 def get_post_url(post_list):
 	''' 게시글 a tag에서 url link 추출하는 함수 '''
@@ -70,9 +71,7 @@ def scroll_to_extract_post_url(driver):
 		_post_urls += get_post_url(get_post_a_tag(driver))
 		_post_urls = list(set(_post_urls))
 
-		# TODO: 스크롤 횟수 입력값이 있을때 입력받은 값으로 설정
-		# if SCROLL_COUNT > 0 and _total_scroll_count == SCROLL_COUNT:
-		if _total_scroll_count >= 500:
+		if SCROLL_NUM > 0 and _total_scroll_count >= SCROLL_NUM:
 			_is_scroll = False
 
 	print('---------- 게시글 가져오기 스크롤이 완료되었습니다. ---------- \n')
