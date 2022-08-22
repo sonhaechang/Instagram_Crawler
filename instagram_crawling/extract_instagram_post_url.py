@@ -37,7 +37,7 @@ def scroll_to_extract_post_url(driver):
 		# 아래로 스크롤후 스크롤 위치
 		_new_height = get_scroll_position(driver)
 		
-		time.sleep(5)
+		time.sleep(3)
 
 		# 스크롤을 했는데 버퍼링 때문엔 게시글이 안가져와질때
 		if _last_height == _new_height:
