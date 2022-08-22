@@ -100,7 +100,7 @@ def extract_hash_tag(args, file_path=None):
 
 			# 마지막으로 추출한 게시글 url 있으면 다음꺼부터 이어서 해쉬태그 추출 아니면 처음부터
 			for post in post_urls[extract_count:]:
-				time.sleep(10)
+				time.sleep(5)
 
 				# 해당 url에 게시글 상세 페이지 읽어오기
 				url = post
