@@ -1,9 +1,14 @@
 import sys
 import argparse
+import signal
 
 from instagram_crawling.extract_instagram_tag import extract_hash_tag
 from instagram_crawling.instagram_crawler import instagram_main
 from instagram_crawling.meta_data import ECTRACT_NUM, SCROLL_NUM
+
+def handler(signum, frame):
+    sys.exit('프로그램을 종료했습니다.')
+
 
 def get_arguments():
 	parser = argparse.ArgumentParser(
@@ -91,4 +96,6 @@ def main():
 		print('---------- 인스타그램 크롤링(게시글 url 저장 및 해쉬태그 저장)이 완료되었습니다. ---------- \n')
 
 if __name__ == "__main__": 
+	signal.signal(signal.SIGINT, handler)
+	
 	main()
