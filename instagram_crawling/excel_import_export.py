@@ -92,6 +92,11 @@ def update_excel(file_path, update_type, count, results=None):
 			# 추출 횟수
 			sheet.cell(row=1, column=2).value = int(count)
 
+			# url 주소를 2번째 row부터 업데이트
+			if results:
+				for i, url in enumerate(results, start=2):
+					add_value_in_excel_cell(sheet, i, f'{BASE_URL}{url}')
+
 		# 해쉬태그 결과 저장할때
 		elif update_type == 'tag_name':
 			sheet.cell(row=1, column=2).value = int(count)

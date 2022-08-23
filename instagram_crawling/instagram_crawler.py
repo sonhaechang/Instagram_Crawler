@@ -34,7 +34,7 @@ def instagram_main(args):
 	total_count = get_total_post_count(driver)
 
 	# 마지막까지 스크롤후 post url 결과 및 스크롤 횟수 저장
-	get_post_result = scroll_to_extract_post_url(driver)
+	get_post_result = scroll_to_extract_post_url(driver, hash_tag)
 	scroll_count = get_post_result['scroll_count']
 	post_urls = get_post_result['post_urls']
 
