@@ -7,7 +7,7 @@ from instagram_crawling.utils import (
 	scroll_up, scroll_down, get_scroll_position,
 )
 from instagram_crawling.excel_import_export import import_excel, export_excel, update_excel
-from instagram_crawling.meta_data import EXCEL_DIR, SCROLL_NUM
+from instagram_crawling.meta_data import EXCEL_DIR
 
 def get_post_url(post_list):
 	''' 게시글 a tag에서 url link 추출하는 함수 '''
@@ -86,8 +86,6 @@ def scroll_to_extract_post_url(driver, hash_tag):
 			else:
 				_post_urls = list(set(_post_urls))
 				export_excel(hash_tag, 'post_url', _post_urls)
-			# if SCROLL_NUM > 0 and _total_scroll_count >= SCROLL_NUM:
-			# 	_is_scroll = False
 
 		print('---------- 게시글 가져오기 스크롤이 완료되었습니다. ---------- \n')
 

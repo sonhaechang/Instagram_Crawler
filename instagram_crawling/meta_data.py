@@ -10,7 +10,6 @@ LOGIN_URL = f'{BASE_URL}/accounts/login/'
 USER_AGENT = 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/104.0.0.0 Safari/537.36'
 
 ECTRACT_NUM = 300
-SCROLL_NUM = 0
 
 # 로그인 버튼 
 LOGIN_BTN = '//*[@id="loginForm"]/div/div[3]'
