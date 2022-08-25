@@ -4,7 +4,7 @@ import signal
 
 from instagram_crawling.extract_instagram_tag import extract_hash_tag
 from instagram_crawling.instagram_crawler import instagram_main
-from instagram_crawling.meta_data import ECTRACT_NUM, SCROLL_NUM
+from instagram_crawling.meta_data import ECTRACT_NUM
 
 def handler(signum, frame):
     sys.exit('프로그램을 종료했습니다.')
@@ -49,13 +49,6 @@ def get_arguments():
 		'--file_name', 
 		required=False, 
 		help='crawling option에서 2 선택시 게시글 url이 저장된 엑셀 파일명 입력 \n' '1 선택시 입력 불필요 \n'
-	)
-
-	parser.add_argument(
-		'--scroll',
-		default=SCROLL_NUM, 
-		type=int, 
-		help='스크롤 횟수를 입력해주세요. \n' '기본값은 모든 게시물을 가져올때까지 스크롤합니다. \n'
 	)
 
 	parser.add_argument(

@@ -168,7 +168,7 @@ def extract_hash_tag(args, file_path=None):
 
 			print('---------- 게시글에서 해쉬태그 추출이 완료 되었습니다. ---------- \n')
 			return import_excel(tag_name_file_path, 'tag_name')['tag_count']
-			
+
 		else:
 			print('error: 게시글 해쉬태그 추출을 위한 로그인에 실패했습니다. 잠시 후 다시 시도해주세요.\n')
 			sys.exit('문제가 지속된다면 개발자에게 문의해주세요. \n')
