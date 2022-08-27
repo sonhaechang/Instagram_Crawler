@@ -70,20 +70,21 @@ def extract_hash_tag(args, file_path=None):
 			file_name = args.file_name
 
 			# 파일 경로가 인자값으로 있으면 그냥 사용 없으면 파일명을 이용하여 파일 경로 생성
-			post_url_file_path = os.path.join(EXCEL_DIR, file_name) \
-				if file_path is None else file_path 
+			file_path = os.path.join(EXCEL_DIR, file_name) if file_path is None else file_path 
 
-			# 게시글 url 엑셀파일명에서 해쉬태그, 날짜를 추출해서 태그 엑셀파일명 생성 및 파일 경로 생성
-			file_name_params = post_url_file_path.split('/')[-1].split('_')
-			hash_tag = file_name_params[0]
-			file_date = file_name_params[1]
+			# 게시글 url 엑셀파일명에서 해쉬태그 추출
+			hash_tag = file_path.split('/')[-1].split('_')[0]
 
-			tag_name_file_path = os.path.join(EXCEL_DIR, f'{hash_tag}_{file_date}_tag_name.xlsx')
+			# url 주소가 저장된 엑셀 파일을 읽어오기
+			excel_result = import_excel(file_path, 'post_url')
 
-			# url 주소가 저장된 엑셀 파일을 읽어서 추출시 필요한 값 변수에 저장
-			excel_result = import_excel(post_url_file_path, 'post_url')
+			# 추출횟수 가져오기 (없다면 0)
 			extract_count = excel_result['extract_count'] if bool(excel_result) else 0
+
+			# 게시글 url 목록 가져오기 (없다면 빈 list)
 			post_urls = excel_result['results'] if bool(excel_result) else list()
+
+			# 게시글 url 수 계산
 			post_urls_num = len(post_urls)
 
 			# 에러 발생시 확인시 True로 변경
@@ -92,6 +93,7 @@ def extract_hash_tag(args, file_path=None):
 			# 인스타 추출 블락 방지 (특정 갯수 이상일시 True로 변경)
 			extract_safe = False
 
+			# 게시글 갯수와 추출횟수가 같을때
 			if int(post_urls_num) == int(extract_count):
 				print('---------- 해당 게시글 url 엑셀은 이미 추출이 완료되었습니다. ---------- \n')
 				sys.exit('---------- 다시 추출을 원하시면 해당 엑셀 파일의 해쉬태그 추출 횟수를 0을 저장 후 다시 시도해주세요. ---------- \n')
@@ -123,10 +125,10 @@ def extract_hash_tag(args, file_path=None):
 						post_count += 1
 
 						# 게시글 url 엑셀 파일에 태그 추출 횃수 업데이트
-						update_excel(post_url_file_path, 'post_url', extract_count)
+						update_excel(file_path, 'post_url', extract_count)
 
 						# 해쉬태그 결과 엑셀 파일에서 내용 읽어오기
-						_excel_result = import_excel(tag_name_file_path, 'tag_name')
+						_excel_result = import_excel(file_path, 'tag_name')
 
 						# 엑셀 파일 있을시 (기존 해쉬태그 결과 엑셀 파일이 존재할떄)
 						if bool(_excel_result):
@@ -139,7 +141,7 @@ def extract_hash_tag(args, file_path=None):
 							duplicate_count_and_make_dict(tag_list, tag_dict)
 
 							# 엑셀에 결과 업데이트
-							update_excel(tag_name_file_path, 'tag_name', len(tag_dict), tag_dict)
+							update_excel(file_path, 'tag_name', len(tag_dict), tag_dict)
 
 						# 엑셀 파일 없을시
 						else:
@@ -147,7 +149,8 @@ def extract_hash_tag(args, file_path=None):
 							duplicate_count_and_make_dict(tag_list, tag_dict)
 
 							# 결과 엑셀로 생성
-							export_excel(hash_tag, 'tag_name', tag_dict, file_date)
+							export_excel(hash_tag, 'tag_name', tag_dict, file_path)
+							
 					else:
 						# 정상 응답이 아니면 extract_error 변수값 True려 변경 후 for문 종료
 						print('---------- 인스타그램 봇 차단에 의해서 해쉬태그 추출이 끊어졌습니다. 잠시 후 다시 시도해주세요. ---------- \n')
@@ -167,11 +170,11 @@ def extract_hash_tag(args, file_path=None):
 					break
 
 			print('---------- 게시글에서 해쉬태그 추출이 완료 되었습니다. ---------- \n')
-			return import_excel(tag_name_file_path, 'tag_name')['tag_count']
+			return import_excel(file_path, 'tag_name')['tag_count']
 
 		else:
 			print('error: 게시글 해쉬태그 추출을 위한 로그인에 실패했습니다. 잠시 후 다시 시도해주세요.\n')
 			sys.exit('문제가 지속된다면 개발자에게 문의해주세요. \n')
 
 	except Exception as e:
-		return import_excel(tag_name_file_path, 'tag_name')['tag_count']
+		return import_excel(file_path, 'tag_name')['tag_count']
