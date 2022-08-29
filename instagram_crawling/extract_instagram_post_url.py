@@ -58,8 +58,8 @@ def scroll_to_extract_post_url(driver, hash_tag):
 					if _last_height != get_scroll_position(driver):
 						_updown_scroll = False
 
-					# 업다운 스크롤 횟수가 30번이 넘었을시 더 이상의 게시글이 없다고 판단하여 스크롤 내리는 함수 종료 
-					if _scroll_count >= 30:
+					# 업다운 스크롤 횟수가 10번이 넘었을시 더 이상의 게시글이 없다고 판단하여 스크롤 내리는 함수 종료 
+					if _scroll_count >= 10:
 						_updown_scroll = False
 						_is_scroll = False
 
