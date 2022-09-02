@@ -37,12 +37,10 @@ def instagram_main(args):
 	get_post_result = scroll_to_extract_post_url(driver, hash_tag)
 	scroll_count = get_post_result['scroll_count']
 	post_urls = get_post_result['post_urls']
+	file_path = get_post_result['file_path']
 
 	#드라이브 종료
 	driver.quit()
-
-	# 결과 엑셀이 저장
-	file_path = export_excel(hash_tag, 'post_url', post_urls)
 
 	# 개시글 url로 해쉬태그 추출 및 결과 저장
 	tag_count = extract_hash_tag(args, file_path)

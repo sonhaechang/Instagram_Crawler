@@ -26,6 +26,9 @@ def scroll_to_extract_post_url(driver, hash_tag):
 	_total_scroll_count = 0
 	_post_urls = list()
 
+	date = datetime.today().strftime('%Y%m%d')
+	post_url_file_path = os.path.join(EXCEL_DIR, f'{hash_tag}_{date}.xlsx')
+
 	try:
 		while _is_scroll:
 			# 스크롤후 로딩이나 마지막 게시글을 가져왔거나 다른 문제가 생겼을시 사용을 위한 변수들   
@@ -71,12 +74,9 @@ def scroll_to_extract_post_url(driver, hash_tag):
 			# 스크롤 횟수 카운트
 			_total_scroll_count += 1
 
-			# 게시글 a tag 가져와 href attr에서 url 추출 및 중복제거
+			# 게시글 a tag 가져와 href attr에서 url 추출
 			_post_urls += get_post_url(get_post_a_tag(driver))
-			# _post_urls = list(set(_post_urls))
 
-			date = datetime.today().strftime('%Y%m%d')
-			post_url_file_path = os.path.join(EXCEL_DIR, f'{hash_tag}_{date}_post_url.xlsx')
 			excel_result = import_excel(post_url_file_path, 'post_url')
 
 			if bool(excel_result):
@@ -92,11 +92,13 @@ def scroll_to_extract_post_url(driver, hash_tag):
 		# 결과, 횟수 반환
 		return { 
 			'scroll_count': _total_scroll_count,
-			'post_urls': _post_urls
+			'post_urls': _post_urls,
+			'file_path': post_url_file_path,
 		}
 	except Exception as e:
 		# 결과, 횟수 반환
 		return { 
 			'scroll_count': _total_scroll_count,
-			'post_urls': _post_urls
+			'post_urls': _post_urls,
+			'file_path': post_url_file_path,
 		}
