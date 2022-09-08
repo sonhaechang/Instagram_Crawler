@@ -12,7 +12,8 @@ from instagram_crawling.excel_import_export import (
 	import_excel, export_excel, update_excel
 )
 from instagram_crawling.meta_data import (
-	EXCEL_DIR, LOGIN_URL, USER_AGENT, HASH_TAG_TITLE_TAG
+	EXCEL_DIR, BLACK_LIST_PATH,
+	LOGIN_URL, USER_AGENT, HASH_TAG_TITLE_TAG
 )
 
 def instagram_login_session(user_id, user_password):
@@ -51,6 +52,13 @@ def duplicate_count_and_make_dict(data_list, data_dict):
 	for i in data_list:
 		try: data_dict[i] += 1
 		except: data_dict[i] = 1
+
+def check_black_list(tag):
+	''' 블랙 리스트된 해쉬태그가 있는지 확인하고 아닌 해쉬태그만 반환 '''
+	black_list = import_excel(BLACK_LIST_PATH, 'black_list')
+
+	if tag not in black_list:
+		return tag
 
 def extract_hash_tag(args, file_path=None):
 	''' 게시글에서 해쉬태그 추출하는 함수 '''
@@ -119,7 +127,7 @@ def extract_hash_tag(args, file_path=None):
 						html = response.content
 						soup = bs(html, 'html.parser')
 						title = soup.select_one(HASH_TAG_TITLE_TAG).string
-						tag_list += re.findall('#[A-Za-z0-9가-힣]+', title)
+						tag_list += list(filter(check_black_list, re.findall('#[A-Za-z0-9가-힣]+', title)))
 
 						extract_count += 1
 						post_count += 1

@@ -418,6 +418,7 @@ pip-selfcheck.json
 
 secrets.json
 excel_result_files/*.xlsx
+excel_black_list/*.xlsx
 driver/chromedriver
 driver/*.zip
 test_date_list.py

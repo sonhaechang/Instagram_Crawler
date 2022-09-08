@@ -3,6 +3,7 @@ import os
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 DRIVER_DIR = os.path.join(BASE_DIR, 'driver/chromedriver')
 EXCEL_DIR = os.path.join(BASE_DIR, 'excel_result_files/')
+BLACK_LIST_PATH = os.path.join(BASE_DIR, 'excel_black_list/black_list.xlsx')
 
 BASE_URL = 'https://www.instagram.com'
 LOGIN_URL = f'{BASE_URL}/accounts/login/'

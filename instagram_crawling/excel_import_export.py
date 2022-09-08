@@ -47,6 +47,16 @@ def import_excel(file_path, import_type):
 
 			return {'results': result_dict, 'tag_count': len(result_dict)}
 
+		# 블랙 리스트 
+		elif import_type == 'black_list':
+			result_list = list()
+
+			# 첫번째 row부터 마지막 row까지의 값 가져오기 
+			for i in range(1, max_row):
+				result_list.append(sheet.cell(row=i, column=1).value)
+
+			return result_list
+
 	except (OSError, KeyError) as e:
 		return {}
 
