@@ -7,7 +7,6 @@ from instagram_crawling.utils import (
 	search_hash_tag,
 )
 
-from instagram_crawling.excel_import_export import export_excel
 from instagram_crawling.extract_instagram_post_url import scroll_to_extract_post_url
 from instagram_crawling.extract_instagram_tag import extract_hash_tag
 from instagram_crawling.meta_data import LOGIN_URL
