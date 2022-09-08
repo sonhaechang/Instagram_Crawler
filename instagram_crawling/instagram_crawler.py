@@ -1,10 +1,10 @@
 import time
+from datetime import timedelta
 
 from instagram_crawling.utils import (
 	make_chrome_driver, 
 	instagram_login, 
-	search_hash_tag, 
-	get_total_post_count,
+	search_hash_tag,
 )
 
 from instagram_crawling.excel_import_export import export_excel
@@ -30,8 +30,7 @@ def instagram_main(args):
 	hash_tag = args.hash_tag
 	search_hash_tag(driver, hash_tag)
 
-	# 검색된 결과의 총 게시물 수 가져오기
-	total_count = get_total_post_count(driver)
+	time.sleep(5)
 
 	# 마지막까지 스크롤후 post url 결과 및 스크롤 횟수 저장
 	get_post_result = scroll_to_extract_post_url(driver, hash_tag)
@@ -44,9 +43,8 @@ def instagram_main(args):
 
 	# 개시글 url로 해쉬태그 추출 및 결과 저장
 	tag_count = extract_hash_tag(args, file_path)
-
-	print(f'소요시간: {time.time() - start_time}') 
-	print(f'총 게시물 수: {format(int(total_count), ",")}')
+	
+	print(f'소요시간: {timedelta(seconds=(time.time() - start_time))}') 
 	print(f'스크롤 횟수: {format(int(scroll_count), ",")}')
 	print(f'추출된 url 수: {format(len(post_urls), ",")}')
 	print(f'추출된 해쉬태그 수: {format(int(tag_count), ",")}')
