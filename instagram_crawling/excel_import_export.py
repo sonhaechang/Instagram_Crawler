@@ -55,7 +55,7 @@ def import_excel(file_path, import_type):
 			for i in range(1, max_row):
 				result_list.append(sheet.cell(row=i, column=1).value)
 
-			return result_list
+			return {'results': result_list}
 
 	except (OSError, KeyError) as e:
 		return {}

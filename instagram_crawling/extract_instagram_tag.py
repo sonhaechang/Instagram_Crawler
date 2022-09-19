@@ -57,8 +57,10 @@ def check_black_list(tag):
 	''' 블랙 리스트된 해쉬태그가 있는지 확인하고 아닌 해쉬태그만 반환 '''
 	black_list = import_excel(BLACK_LIST_PATH, 'black_list')
 
-	if tag not in black_list:
-		return tag
+	if bool(black_list):
+		if tag not in black_list['results']:
+			return tag
+	return tag
 
 def extract_hash_tag(args, file_path=None):
 	''' 게시글에서 해쉬태그 추출하는 함수 '''
@@ -181,7 +183,8 @@ def extract_hash_tag(args, file_path=None):
 			return import_excel(file_path, 'tag_name')['tag_count']
 
 		else:
-			print('error: 게시글 해쉬태그 추출을 위한 로그인에 실패했습니다. 잠시 후 다시 시도해주세요.\n')
+			print('---------- 게시글 해쉬태그 추출을 위한 로그인에 실패했습니다. 잠시 후 다시 시도해주세요. ---------- \n')
+			print(f'---------- status code: {login_status} ---------- \n')
 			sys.exit('문제가 지속된다면 개발자에게 문의해주세요. \n')
 
 	except Exception as e:
