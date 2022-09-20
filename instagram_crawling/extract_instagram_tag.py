@@ -55,12 +55,14 @@ def duplicate_count_and_make_dict(data_list, data_dict):
 
 def check_black_list(tag):
 	''' 블랙 리스트된 해쉬태그가 있는지 확인하고 아닌 해쉬태그만 반환 '''
+
 	black_list = import_excel(BLACK_LIST_PATH, 'black_list')
 
 	if bool(black_list):
 		if tag not in black_list['results']:
 			return tag
-	return tag
+	else:
+		return tag
 
 def extract_hash_tag(args, file_path=None):
 	''' 게시글에서 해쉬태그 추출하는 함수 '''
