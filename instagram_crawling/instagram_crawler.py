@@ -37,11 +37,15 @@ def instagram_main(args):
 	post_urls = get_post_result['post_urls']
 	file_path = get_post_result['file_path']
 
+	# #드라이브 종료
+	# driver.quit()
+
+	# # 개시글 url로 해쉬태그 추출 및 결과 저장
+	# tag_count = extract_hash_tag(args, file_path)
+	tag_count = extract_hash_tag(args, file_path, driver)
+
 	#드라이브 종료
 	driver.quit()
-
-	# 개시글 url로 해쉬태그 추출 및 결과 저장
-	tag_count = extract_hash_tag(args, file_path)
 	
 	print(f'소요시간: {timedelta(seconds=(time.time() - start_time))}') 
 	print(f'스크롤 횟수: {format(int(scroll_count), ",")}')

@@ -16,16 +16,21 @@ ECTRACT_NUM = 300
 LOGIN_BTN = '//*[@id="loginForm"]/div/div[3]'
 
 # 로그인 정보 저장 알림팝업창 나중에 하기 버튼
-LOGIN_INFO_POPUP = '//*[@id="react-root"]/section/main/div/div/div/div/button'
+# LOGIN_INFO_POPUP = '//*[@id="react-root"]/section/main/div/div/div/div/button'
+LOGIN_INFO_POPUP =  'button._acan._acao._acas._aj1-'
 
 # 알림설정 팝업창 나중에 하기 버튼
 NOTIFY_POPUP = 'button._a9--._a9_1'
+
+# 검색창 버튼
+SEARHC_BUTTON = 'div.xh8yej3.x1iyjqo2 div:nth-child(2) div.x1n2onr6 a'
 
 # 검색 창
 SEARCH_INPUT = 'input._aauy'
 
 # 검색결과에서 가장 첫번째 내용
-FIRST_SEARCH_RESULT = 'div._ad8j._aa5x._aa5y._aa5z a'
+# FIRST_SEARCH_RESULT = 'div._ad8j._aa5x._aa5y._aa5z a'
+FIRST_SEARCH_RESULT = 'div.x6s0dn4.x1wzhzgj.x78zum5.xdt5ytf.x5yr21d.x1n2onr6.xh8yej3.xhtitgo div._abm4 a'
 
 # 총 개시물 수
 TOTAL_POST_COUNT = 'span._ac2a'
