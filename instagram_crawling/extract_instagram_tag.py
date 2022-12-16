@@ -103,46 +103,57 @@ def extract_hash_tag(args, file_path=None, driver=None):
 				driver.get(url)
 
 				# 200 정상 응답이 오면 해쉬태그 추출해서 리스트에 추가
-				html = driver.page_source
-				soup = bs(html, 'html.parser')
-				title = soup.select_one(HASH_TAG_TITLE_TAG).string
-				tag_list += list(filter(check_black_list, re.findall('#[A-Za-z0-9가-힣]+', title)))
+				if driver.requests[0].response.status_code == 200:
+					html = driver.page_source
+					soup = bs(html, 'html.parser')
+					title = soup.select_one(HASH_TAG_TITLE_TAG).string
 
-				extract_count += 1
-				post_count += 1
+					if title == 'www.instagram.com':
+						driver.quit()
+						print('---------- 문제가 지속된다면 개발자에게 문의해주세요. ---------- \n')
+						sys.exit('---------- 인스타그램 봇 차단에 의해서 해쉬태그 추출이 끊어졌습니다. 잠시 후 다시 시도해주세요. ---------- \n')
 
-				# 게시글 url 엑셀 파일에 태그 추출 횃수 업데이트
-				update_excel(file_path, 'post_url', extract_count)
+					tag_list += list(filter(check_black_list, re.findall('#[A-Za-z0-9가-힣]+', title)))
 
-				# 해쉬태그 결과 엑셀 파일에서 내용 읽어오기
-				_excel_result = import_excel(file_path, 'tag_name')
+					extract_count += 1
+					post_count += 1
 
-				# 엑셀 파일 있을시 (기존 해쉬태그 결과 엑셀 파일이 존재할떄)
-				if bool(_excel_result):
-					_tag_result = _excel_result['results']
+					# 게시글 url 엑셀 파일에 태그 추출 횃수 업데이트
+					update_excel(file_path, 'post_url', extract_count)
 
-					# 기존 해쉬태그 결과 추가하기
-					tag_dict.update(_tag_result)
+					# 해쉬태그 결과 엑셀 파일에서 내용 읽어오기
+					_excel_result = import_excel(file_path, 'tag_name')
 
-					# 해쉬태그 중복 카운트
-					duplicate_count_and_make_dict(tag_list, tag_dict)
+					# 엑셀 파일 있을시 (기존 해쉬태그 결과 엑셀 파일이 존재할떄)
+					if bool(_excel_result):
+						_tag_result = _excel_result['results']
 
-					# 엑셀에 결과 업데이트
-					update_excel(file_path, 'tag_name', len(tag_dict), tag_dict)
+						# 기존 해쉬태그 결과 추가하기
+						tag_dict.update(_tag_result)
 
-				# 엑셀 파일 없을시
+						# 해쉬태그 중복 카운트
+						duplicate_count_and_make_dict(tag_list, tag_dict)
+
+						# 엑셀에 결과 업데이트
+						update_excel(file_path, 'tag_name', len(tag_dict), tag_dict)
+
+					# 엑셀 파일 없을시
+					else:
+						# 해쉬태그 중복 카운트
+						duplicate_count_and_make_dict(tag_list, tag_dict)
+
+						# 결과 엑셀로 생성
+						export_excel(hash_tag, 'tag_name', tag_dict, file_path)
+
+					if int(args.ectract) >= 100 or post_count >= int(args.ectract) or post_count >= 100:
+						print(f'---------- 인스타그램 봇 차단 방지를 위해서 게시글 {args.ectract}개 까지만 확인합니다. ---------- \n')
+
+						extract_safe = True
+						break
 				else:
-					# 해쉬태그 중복 카운트
-					duplicate_count_and_make_dict(tag_list, tag_dict)
-
-					# 결과 엑셀로 생성
-					export_excel(hash_tag, 'tag_name', tag_dict, file_path)
-
-				if int(args.ectract) >= 100 and post_count >= int(args.ectract):
-					print(f'---------- 인스타그램 봇 차단 방지를 위해서 게시글 {args.ectract}개 까지만 확인합니다. ---------- \n')
-
-					extract_safe = True
-					break
+					# 정상 응답이 아니면 extract_error 변수값 True려 변경 후 for문 종료
+					print('---------- 인스타그램 봇 차단에 의해서 해쉬태그 추출이 끊어졌습니다. 잠시 후 다시 시도해주세요. ---------- \n')
+					print('---------- 문제가 지속된다면 개발자에게 문의해주세요. ---------- \n')
 
 			# extract_error 혹은 extract_safe 변수값 True이면 while문 종료
 			if extract_error or extract_safe:
