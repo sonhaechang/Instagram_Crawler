@@ -17,7 +17,7 @@ def make_chrome_driver():
 def instagram_login(driver, user_id, user_password):
 	''' 인스타그램 로그인 및 알림창 팝업 닫는 함수 '''
 
-	time.sleep(3)
+	time.sleep(5)
 
 	# 아이디 비밀번호 입력
 	# 'uglyfox@hanmail.net' 'mslove18iris'
@@ -27,12 +27,12 @@ def instagram_login(driver, user_id, user_password):
 	# 로그인 버튼 클릭
 	driver.find_element(By.XPATH, LOGIN_BTN).submit()
 
-	time.sleep(3)
+	time.sleep(5)
 
 	# 로그인 정보 저장 알림팝업창 나중에 하기 버튼 클릭
 	driver.find_element(By.CSS_SELECTOR, LOGIN_INFO_POPUP).click()
 
-	time.sleep(3)
+	time.sleep(5)
 
 	# 알림설정 팝업창 나중에 하기 버튼 클릭
 	driver.find_element(By.CSS_SELECTOR, NOTIFY_POPUP).click()
@@ -40,17 +40,17 @@ def instagram_login(driver, user_id, user_password):
 def search_hash_tag(driver, hash_tag):
 	''' 해쉬태그 검색 함수 '''
 
-	time.sleep(3)
+	time.sleep(5)
 
 	# sidebar에서 검색 버튼 클릭
 	driver.find_element(By.CSS_SELECTOR, SEARHC_BUTTON).click()
 
-	time.sleep(3)
+	time.sleep(5)
 
 	# 검색 창에 처음 입력받은 해쉬태그를 검색
 	driver.find_element(By.CSS_SELECTOR, SEARCH_INPUT).send_keys(hash_tag)
 
-	time.sleep(3)
+	time.sleep(5)
 
 	# 검색결과에서 가장 첫번째 내용을 클릭
 	driver.find_element(By.CSS_SELECTOR, FIRST_SEARCH_RESULT).click()
