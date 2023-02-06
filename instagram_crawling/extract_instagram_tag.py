@@ -145,7 +145,8 @@ def extract_hash_tag(args, file_path=None, driver=None):
 						# 결과 엑셀로 생성
 						export_excel(hash_tag, 'tag_name', tag_dict, file_path)
 
-					if int(args.ectract) >= 100 or post_count >= int(args.ectract) or post_count >= 100:
+					if post_count >= int(args.ectract):
+					# if int(args.ectract) >= 100 or post_count >= int(args.ectract) or post_count >= 100:
 						print(f'---------- 인스타그램 봇 차단 방지를 위해서 게시글 {args.ectract}개 까지만 확인합니다. ---------- \n')
 
 						extract_safe = True
