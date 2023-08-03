@@ -16,19 +16,20 @@ ECTRACT_NUM = 300
 LOGIN_BTN = '//*[@id="loginForm"]/div/div[3]'
 
 # 로그인 정보 저장 알림팝업창 나중에 하기 버튼
-LOGIN_INFO_POPUP =  'button._acan._acao._acas._aj1-'
+LOGIN_INFO_POPUP = 'div.x1i10hfl.xjqpnuy.xa49m3k.xqeqjp1.x2hbi6w.xdl72j9.x2lah0s.xe8uvvx.xdj266r.x11i5rnm.xat24cr.x1mh8g0r.x2lwn1j.xeuugli.x1hl2dhg.xggy1nq.x1ja2u2z.x1t137rt.x1q0g3np.x1lku1pv.x1a2a7pz.x6s0dn4.xjyslct.x1ejq31n.xd10rxx.x1sy0etr.x17r0tee.x9f619.x1ypdohk.x1i0vuye.x1f6kntn.xwhw2v2.xl56j7k.x17ydfre.x2b8uid.xlyipyv.x87ps6o.x14atkfc.xcdnw81.xjbqb8w.xm3z3ea.x1x8b98j.x131883w.x16mih1h.x972fbf.xcfux6l.x1qhh985.xm0m39n.xt0psk2.xt7dq6l.xexx8yu.x4uap5.x18d9i69.xkhd6sd.x1n2onr6.x1n5bzlp.x173jzuc.x1yc6y37'
 
 # 알림설정 팝업창 나중에 하기 버튼
 NOTIFY_POPUP = 'button._a9--._a9_1'
 
 # 검색창 버튼
-SEARHC_BUTTON = 'div.xh8yej3.x1iyjqo2 div:nth-child(2) div.x1n2onr6 a'
+SEARHC_BUTTON = 'div.x1iyjqo2.xh8yej3 > div:nth-child(2) > span > div > a > div'
 
 # 검색 창
-SEARCH_INPUT = 'input._aauy'
+# SEARCH_INPUT = 'input._aauy'
+SEARCH_INPUT = 'input.x1lugfcp.x19g9edo.x1lq5wgf.xgqcy7u.x30kzoy.x9jhf4c.x972fbf.xcfux6l.x1qhh985.xm0m39n.x9f619.x5n08af.xl565be.x5yr21d.x1a2a7pz.xyqdw3p.x1pi30zi.xg8j3zb.x1swvt13.x1yc453h.xh8yej3.xhtitgo.xs3hnx8.x1dbmdqj.xoy4bel.x7xwk5j'
 
 # 검색결과에서 가장 첫번째 내용
-FIRST_SEARCH_RESULT = 'div.x6s0dn4.x1wzhzgj.x78zum5.xdt5ytf.x5yr21d.x1n2onr6.xh8yej3.xhtitgo div._abm4 a'
+FIRST_SEARCH_RESULT = 'div.x6s0dn4.x78zum5.xdt5ytf.x5yr21d.x1n2onr6.xh8yej3.xhtitgo > div > div:nth-child(1) > a'
 
 # 총 개시물 수
 TOTAL_POST_COUNT = 'span._ac2a'
