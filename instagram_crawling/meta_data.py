@@ -35,7 +35,7 @@ FIRST_SEARCH_RESULT = 'div.x6s0dn4.x78zum5.xdt5ytf.x5yr21d.x1n2onr6.xh8yej3.xhti
 TOTAL_POST_COUNT = 'span._ac2a'
 
 # 개시글들의 a 태그
-POST_A_TAG = 'div._aabd._aa8k._aanf a'
+POST_A_TAG = 'div._aabd._aa8k._al3l > a'
 
 # 해쉬태그가 들어있는 title 태그
 HASH_TAG_TITLE_TAG = 'title'
